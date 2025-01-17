@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Simple Banking System</title>
+    <title>Banking System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -8,153 +8,171 @@
         body {
             font-family: 'Roboto', sans-serif;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-blue-600 text-white p-4 text-center">
-        <h1 class="text-2xl font-bold">Banking System</h1>
-    </header>
-    <div id="login" class="container mx-auto p-4">
-        <div class="bg-white p-6 rounded shadow-md max-w-sm mx-auto">
-            <h2 class="text-xl font-bold mb-2">Login</h2>
-            <form id="loginForm" class="space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
-                    <input type="text" id="username" name="username" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
-                    <input type="password" id="password" name="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Login</button>
+    <div class="container mx-auto p-4" id="login-container">
+        <div class="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Username" class="w-full p-2 mb-4 border rounded" required>
+                <input type="password" id="login-password" placeholder="Password" class="w-full p-2 mb-4 border rounded" required>
+                <button type="submit" class="w-full bg-green-500 text-white p-2 rounded">Login</button>
             </form>
+            <div class="text-center mt-4">
+                <a href="#" id="create-account-link" class="text-blue-500">Create an Account</a>
+            </div>
         </div>
     </div>
-    <nav id="nav" class="bg-gray-800 text-white p-4 hidden">
-        <div class="container mx-auto flex justify-around">
-            <a href="#" id="homeLink" class="hover:bg-blue-600 p-2 rounded">Home</a>
-            <a href="#" id="accountsLink" class="hover:bg-blue-600 p-2 rounded">Accounts</a>
-            <a href="#" id="transferLink" class="hover:bg-blue-600 p-2 rounded">Transfer</a>
-            <a href="#" id="historyLink" class="hover:bg-blue-600 p-2 rounded">History</a>
-            <a href="#" id="logoutLink" class="hover:bg-blue-600 p-2 rounded">Logout</a>
-        </div>
-    </nav>
-    <div id="content" class="container mx-auto p-4 hidden">
-        <div id="home" class="bg-white p-6 rounded shadow-md">
-            <h2 class="text-xl font-bold mb-2">Hi, John Doe</h2>
-            <p>Welcome to your banking portal. Please choose an option from the menu.</p>
-        </div>
-        <div id="accounts" class="bg-white p-6 rounded shadow-md hidden">
-            <h2 class="text-xl font-bold mb-2">Account Information</h2>
-            <p>Account Holder: John Doe</p>
-            <p>Account Number: 123456789</p>
-            <p>Balance: $10,000</p>
-        </div>
-        <div id="transfer" class="bg-white p-6 rounded shadow-md hidden">
-            <h2 class="text-xl font-bold mb-2">Transfer Funds</h2>
-            <form id="transferForm" class="space-y-4">
-                <div>
-                    <label for="recipient" class="block text-sm font-medium text-gray-700">Recipient Account Number:</label>
-                    <input type="text" id="recipient" name="recipient" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
-                <div>
-                    <label for="ifsc" class="block text-sm font-medium text-gray-700">Recipient IFSC Code:</label>
-                    <input type="text" id="ifsc" name="ifsc" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
-                <div>
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
-                    <input type="number" id="amount" name="amount" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Transfer</button>
+
+    <div class="container mx-auto p-4 hidden" id="create-account-container">
+        <div class="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-center">Create Account</h2>
+            <form id="create-account-form">
+                <input type="text" id="create-name" placeholder="Name" class="w-full p-2 mb-4 border rounded" required>
+                <input type="text" id="create-account-number" placeholder="Account Number" class="w-full p-2 mb-4 border rounded" required>
+                <input type="text" id="create-mobile-number" placeholder="Mobile Number" class="w-full p-2 mb-4 border rounded" required>
+                <input type="text" id="create-username" placeholder="Username" class="w-full p-2 mb-4 border rounded" required>
+                <input type="password" id="create-password" placeholder="Password" class="w-full p-2 mb-4 border rounded" required>
+                <button type="submit" class="w-full bg-green-500 text-white p-2 rounded">Create Account</button>
             </form>
-        </div>
-        <div id="history" class="bg-white p-6 rounded shadow-md hidden">
-            <h2 class="text-xl font-bold mb-2">Transaction History</h2>
-            <table class="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th class="py-2 px-4 bg-blue-600 text-white">Date</th>
-                        <th class="py-2 px-4 bg-blue-600 text-white">Description</th>
-                        <th class="py-2 px-4 bg-blue-600 text-white">Amount</th>
-                        <th class="py-2 px-4 bg-blue-600 text-white">Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-4 py-2">2023-01-01</td>
-                        <td class="border px-4 py-2">Deposit</td>
-                        <td class="border px-4 py-2">$1,000</td>
-                        <td class="border px-4 py-2">$10,000</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2">2023-01-02</td>
-                        <td class="border px-4 py-2">Withdrawal</td>
-                        <td class="border px-4 py-2">$500</td>
-                        <td class="border px-4 py-2">$9,500</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2">2023-01-03</td>
-                        <td class="border px-4 py-2">Deposit</td>
-                        <td class="border px-4 py-2">$2,000</td>
-                        <td class="border px-4 py-2">$11,500</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2">2023-01-04</td>
-                        <td class="border px-4 py-2">Withdrawal</td>
-                        <td class="border px-4 py-2">$1,500</td>
-                        <td class="border px-4 py-2">$10,000</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="text-center mt-4">
+                <a href="#" id="back-to-login-link" class="text-blue-500">Back to Login</a>
+            </div>
         </div>
     </div>
+
+    <div class="container mx-auto p-4 hidden" id="dashboard-container">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Banking System</h2>
+                <button id="logout-button" class="bg-red-500 text-white p-2 rounded">Logout</button>
+            </div>
+            <nav class="mb-4">
+                <ul class="flex space-x-4">
+                    <li><a href="#" id="home-link" class="text-blue-500">Home</a></li>
+                    <li><a href="#" id="account-link" class="text-blue-500">Account</a></li>
+                    <li><a href="#" id="transfer-link" class="text-blue-500">Transfer</a></li>
+                    <li><a href="#" id="history-link" class="text-blue-500">History</a></li>
+                </ul>
+            </nav>
+            <div id="home-section" class="hidden">
+                <h3 class="text-xl font-bold">Hi, <span id="account-holder-name"></span></h3>
+            </div>
+            <div id="account-section" class="hidden">
+                <h3 class="text-xl font-bold">Account Details</h3>
+                <p>Account Number: <span id="account-number">**** **** **** 1234</span> <i id="toggle-account-number" class="fas fa-eye cursor-pointer"></i></p>
+                <p>Available Balance: $<span id="available-balance">10,000</span></p>
+            </div>
+            <div id="transfer-section" class="hidden">
+                <h3 class="text-xl font-bold">Transfer Funds</h3>
+                <form id="transfer-form">
+                    <input type="text" placeholder="Recipient Name" class="w-full p-2 mb-4 border rounded" required>
+                    <input type="text" placeholder="Account Number" class="w-full p-2 mb-4 border rounded" required>
+                    <input type="text" placeholder="IFSC Code" class="w-full p-2 mb-4 border rounded" required>
+                    <input type="number" placeholder="Amount" class="w-full p-2 mb-4 border rounded" required>
+                    <button type="submit" class="w-full bg-green-500 text-white p-2 rounded">Send</button>
+                </form>
+            </div>
+            <div id="history-section" class="hidden">
+                <h3 class="text-xl font-bold">Transaction History</h3>
+                <ul id="transaction-history">
+                    <li class="mb-2">Transaction 1: $100 - Deposit</li>
+                    <li class="mb-2">Transaction 2: $200 - Withdrawal</li>
+                    <li class="mb-2">Transaction 3: $300 - Transfer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const validUsername = 'john';
-        const validPassword = 'doe123';
+        let users = [];
 
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('create-account-link').addEventListener('click', function() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('create-account-container').classList.remove('hidden');
+        });
+
+        document.getElementById('back-to-login-link').addEventListener('click', function() {
+            document.getElementById('create-account-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        });
+
+        document.getElementById('create-account-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const name = document.getElementById('create-name').value;
+            const accountNumber = document.getElementById('create-account-number').value;
+            const mobileNumber = document.getElementById('create-mobile-number').value;
+            const username = document.getElementById('create-username').value;
+            const password = document.getElementById('create-password').value;
 
-            if (username === validUsername && password === validPassword) {
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('nav').classList.remove('hidden');
-                document.getElementById('content').classList.remove('hidden');
-                showSection('home');
+            users.push({ name, accountNumber, mobileNumber, username, password });
+
+            alert('Account created successfully!');
+            document.getElementById('create-account-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                document.getElementById('login-container').classList.add('hidden');
+                document.getElementById('dashboard-container').classList.remove('hidden');
+                document.getElementById('account-holder-name').textContent = user.name;
+                document.getElementById('account-number').textContent = `**** **** **** ${user.accountNumber.slice(-4)}`;
             } else {
                 alert('Invalid username or password');
             }
         });
 
-        document.getElementById('homeLink').addEventListener('click', function() {
-            showSection('home');
-        });
-        document.getElementById('accountsLink').addEventListener('click', function() {
-            showSection('accounts');
-        });
-        document.getElementById('transferLink').addEventListener('click', function() {
-            showSection('transfer');
-        });
-        document.getElementById('historyLink').addEventListener('click', function() {
-            showSection('history');
-        });
-        document.getElementById('logoutLink').addEventListener('click', function() {
-            alert('You have been logged out.');
-            document.getElementById('login').classList.remove('hidden');
-            document.getElementById('nav').classList.add('hidden');
-            document.getElementById('content').classList.add('hidden');
+        document.getElementById('logout-button').addEventListener('click', function() {
+            document.getElementById('dashboard-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
         });
 
-        document.getElementById('transferForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Funds transferred successfully!');
+        document.getElementById('home-link').addEventListener('click', function() {
+            showSection('home-section');
+        });
+
+        document.getElementById('account-link').addEventListener('click', function() {
+            showSection('account-section');
+        });
+
+        document.getElementById('transfer-link').addEventListener('click', function() {
+            showSection('transfer-section');
+        });
+
+        document.getElementById('history-link').addEventListener('click', function() {
+            showSection('history-section');
+        });
+
+        document.getElementById('toggle-account-number').addEventListener('click', function() {
+            const accountNumberElement = document.getElementById('account-number');
+            const user = users.find(user => user.username === document.getElementById('login-username').value);
+
+            if (accountNumberElement.textContent.includes('****')) {
+                accountNumberElement.textContent = user.accountNumber;
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+            } else {
+                accountNumberElement.textContent = `**** **** **** ${user.accountNumber.slice(-4)}`;
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+            }
         });
 
         function showSection(sectionId) {
-            const sections = ['home', 'accounts', 'transfer', 'history'];
-            sections.forEach(section => {
-                document.getElementById(section).classList.add('hidden');
+            const sections = ['home-section', 'account-section', 'transfer-section', 'history-section'];
+            sections.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
         }
